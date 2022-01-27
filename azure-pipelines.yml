@@ -27,8 +27,19 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure Pass - Sponsorship(959ff148-4eed-4a6c-936e-7b8a8be25da4)'
+    appType: 'webAppLinux'
+    appName: 'gcxhcyt'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure Pass - Sponsorship(959ff148-4eed-4a6c-936e-7b8a8be25da4)'
+    appType: 'webAppLinux'
+    appName: 'testngjg'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
